@@ -1,0 +1,57 @@
+<div class="note" *ngFor="let note of noteList">
+  <div class="note-title">
+
+    <div *ngIf="currentNoteForEdit === note; then editTitle else showTitle" ></div>
+    <ng-template #editTitle>
+      <input
+        type="text"
+        [(ngModel)]="note.title"
+        #message="ngModel"
+      >
+    </ng-template>
+
+    <ng-template #showTitle>
+      <h1>{{ note.title }}</h1>
+    </ng-template>
+
+    <div class="dropdown">
+      <i class="fa-solid fa-ellipsis"></i>
+
+      <div class="dropdown-content">
+        <button (click)="currentNoteForEdit = note" class="fa-solid fa-pen"></button>
+        <button (click)="onDeleteNote(note.id)" class="fa-solid fa-trash"></button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentNoteForEdit === note; then editText else showText"></div>
+    <ng-template #editText>
+      <div class="note-body">
+        <textarea
+          autosize
+          [(ngModel)]="note.text"
+          #message="ngModel"
+        >
+          {{ note.text }}
+        </textarea>
+    
+        <button
+          class="save-btn"
+          (click)="onEditNote(note)"
+        >
+          Save
+        </button>
+      </div>
+    </ng-template>
+  
+    <ng-template #showText>
+      <div class="note-body ">
+        <p>
+          {{ note.text }}
+        </p>
+      </div>
+    </ng-template>
+
+</div>
+
+<div class="note add-note" (click)="onAddNote()">+</div>
