@@ -18,3 +18,17 @@ $main-color: #ffbc00;
 
   .board { column-count: 4; }
 }
+
+
+@media screen and (max-width: 950px) {
+  .container .board { column-count: 3; }
+}
+
+
+@media screen and (max-width: 700px) {
+  .container .board { column-count: 2; }
+}
+
+@media screen and (max-width: 500px) {
+  .container .board { column-count: 1; }
+}
